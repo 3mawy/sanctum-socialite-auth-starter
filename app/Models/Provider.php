@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Provider extends Model
 {
     protected $fillable = ['provider', 'provider_id', 'user_id', 'avatar'];
-    use HasFactory;
+    protected  $hidden = [
+        'created_at',
+        'updated_at'
+    ];
 }
