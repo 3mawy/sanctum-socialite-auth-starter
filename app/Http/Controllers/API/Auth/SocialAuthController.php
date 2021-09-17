@@ -65,6 +65,7 @@ class SocialAuthController extends Controller
 
         return response()->json($userCreated, 200, ['Access-Token' => $token]);
     }
+
     /**
      * @param $provider
      * @return JsonResponse|null

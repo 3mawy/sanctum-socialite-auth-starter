@@ -27,16 +27,17 @@ class AuthController extends Controller
         $validatedData['password'] = Hash::make($request->password);
 
         $user = User::create($validatedData);
-/*      $user = User::create([
-              'name' => $validatedData['name'],
-                   'email' => $validatedData['email'],
-                   'password' => Hash::make($validatedData['password']),
-       ]);
-*/
+        /*      $user = User::create([
+                      'name' => $validatedData['name'],
+                           'email' => $validatedData['email'],
+                           'password' => Hash::make($validatedData['password']),
+               ]);
+        */
         $accessToken = $user->createToken('auth_token')->plainTextToken;
 
         return response(['user' => $user, 'access_token' => $accessToken], 201);
     }
+
     /**
      * Login the user.
      *
@@ -58,8 +59,9 @@ class AuthController extends Controller
 
         return response(['user' => auth()->user(), 'access_token' => $accessToken]);
     }
+
     public function me(Request $request)
     {
-        return response(['user' ],221);
+        return response(['user'], 221);
     }
 }
