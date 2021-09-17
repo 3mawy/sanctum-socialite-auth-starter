@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOauthServiceProvidersTable extends Migration
+class CreateProvidersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateOauthServiceProvidersTable extends Migration
      */
     public function up()
     {
-        Schema::create('oauth_service_providers', function (Blueprint $table) {
+        Schema::create('providers', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('provider');
             $table->string('provider_id');
@@ -30,6 +30,6 @@ class CreateOauthServiceProvidersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('oauth_service_providers');
+        Schema::dropIfExists('providers');
     }
 }
