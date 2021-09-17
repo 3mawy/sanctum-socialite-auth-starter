@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\API\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -18,8 +20,13 @@ class AuthController extends Controller
         $validatedData['password'] = Hash::make($request->password);
 
         $user = User::create($validatedData);
-
-        $accessToken = $user->createToken('authToken')->accessToken;
+/*      $user = User::create([
+              'name' => $validatedData['name'],
+                   'email' => $validatedData['email'],
+                   'password' => Hash::make($validatedData['password']),
+       ]);
+*/
+        $accessToken = $user->createToken('auth_token')->plainTextToken;
 
         return response(['user' => $user, 'access_token' => $accessToken], 201);
     }
@@ -35,8 +42,12 @@ class AuthController extends Controller
             return response(['message' => 'This User does not exist, check your details'], 400);
         }
 
-        $accessToken = auth()->user()->createToken('authToken')->accessToken;
+        $accessToken = auth()->user()->createToken('auth_token')->plainTextToken;
 
         return response(['user' => auth()->user(), 'access_token' => $accessToken]);
+    }
+    public function me(Request $request)
+    {
+        return response(['user' ],221);
     }
 }
