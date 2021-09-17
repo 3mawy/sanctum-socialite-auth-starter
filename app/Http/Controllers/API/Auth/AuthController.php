@@ -4,11 +4,18 @@ namespace App\Http\Controllers\API\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
+    /**
+     * Registers the user in the database.
+     *
+     * @param $request
+     * @return JsonResponse
+     */
     public function register(Request $request)
     {
         $validatedData = $request->validate([
@@ -30,7 +37,12 @@ class AuthController extends Controller
 
         return response(['user' => $user, 'access_token' => $accessToken], 201);
     }
-
+    /**
+     * Login the user.
+     *
+     * @param $request
+     * @return JsonResponse
+     */
     public function login(Request $request)
     {
         $loginData = $request->validate([
